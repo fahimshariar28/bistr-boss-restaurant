@@ -1,6 +1,7 @@
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import featuredImg from "../../../assets/home/featured.jpg";
 import "./Featured.css";
+import OutLineButton from "../../../components/OutLineButton";
 
 const Featured = () => {
   return (
@@ -24,9 +25,7 @@ const Featured = () => {
             reprehenderit numquam magnam nemo vitae cupiditate, atque maiores
             dicta minus pariatur. Perspiciatis nobis vero quas?
           </p>
-          <button className="btn btn-outline border-0 border-b-4 mt-4">
-            Order Now
-          </button>
+          <OutLineButton text="Order Now"></OutLineButton>
         </div>
       </div>
     </div>

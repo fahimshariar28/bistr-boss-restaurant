@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import MenuItem from "../../Shared/MenuItem";
+import OutLineButton from "../../../components/OutLineButton";
 
 const PopularMenu = () => {
   const [menu, setMenu] = useState([]);
@@ -24,9 +25,7 @@ const PopularMenu = () => {
         ))}
       </div>
       <div className="flex justify-center">
-        <button className="btn btn-outline border-0 border-b-4 mt-4">
-          View Full Menu
-        </button>
+        <OutLineButton text="View Full Menu"></OutLineButton>
       </div>
     </section>
   );
