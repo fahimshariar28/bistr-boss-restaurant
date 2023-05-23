@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import MenuItem from "../../Shared/MenuItem";
-import OutLineButton from "../../../components/OutLineButton";
+import OutLineButton from "../../../components/OutLineButton/OutLineButton";
 
 const PopularMenu = () => {
   const [menu, setMenu] = useState([]);

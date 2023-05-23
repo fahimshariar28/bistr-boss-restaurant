@@ -1,7 +1,7 @@
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import featuredImg from "../../../assets/home/featured.jpg";
 import "./Featured.css";
-import OutLineButton from "../../../components/OutLineButton";
+import OutLineButton from "../../../components/OutLineButton/OutLineButton";
 
 const Featured = () => {
   return (
