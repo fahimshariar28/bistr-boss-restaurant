@@ -1,12 +1,15 @@
+import { useContext } from "react";
 import { useState, useEffect } from "react";
 import {
   loadCaptchaEnginge,
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
   //   const [disabled, setDisabled] = useState(true);
+  const { signInUser } = useContext(AuthContext);
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -21,6 +24,17 @@ const Login = () => {
     }
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    signInUser(email, password).then((result) => {
+      const user = result.user;
+      console.log(user);
+    });
+  };
+
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row">
@@ -33,7 +47,7 @@ const Login = () => {
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div className="card-body">
+          <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -74,9 +88,9 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <input className="btn btn-primary" type="button" value="Login" />
+              <input className="btn btn-primary" type="submit" value="Login" />
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
