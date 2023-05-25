@@ -6,10 +6,15 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../provider/AuthProvider";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  //   const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(true);
   const { signInUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -18,9 +23,9 @@ const Login = () => {
   const handleValidateCaptcha = (e) => {
     const user_captcha_value = e.target.value;
     if (validateCaptcha(user_captcha_value)) {
-      //   setDisabled(false);
+      setDisabled(false);
     } else {
-      //   setDisabled(true);
+      setDisabled(true);
     }
   };
 
@@ -32,6 +37,16 @@ const Login = () => {
     signInUser(email, password).then((result) => {
       const user = result.user;
       console.log(user);
+      Swal.fire({
+        title: "User Login Successful.",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+      navigate(from, { replace: true });
     });
   };
 
@@ -74,7 +89,7 @@ const Login = () => {
                   <LoadCanvasTemplate />
                 </label>
                 <input
-                  onChange={handleValidateCaptcha}
+                  onBlur={handleValidateCaptcha}
                   type="text"
                   name="captcha"
                   placeholder="type the captcha above"
@@ -88,9 +103,19 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <input className="btn btn-primary" type="submit" value="Login" />
+              <input
+                disabled={disabled}
+                className="btn btn-primary"
+                type="submit"
+                value="Login"
+              />
             </div>
           </form>
+          <p>
+            <small>
+              New Here? <Link to="/signup">Create an account</Link>{" "}
+            </small>
+          </p>
         </div>
       </div>
     </div>
