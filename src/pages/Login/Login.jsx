@@ -8,6 +8,7 @@ import {
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
@@ -52,6 +53,9 @@ const Login = () => {
 
   return (
     <div className="hero min-h-screen bg-base-200">
+      <Helmet>
+        <title>Login - Bistro Boss Restaurant</title>
+      </Helmet>
       <div className="hero-content flex-col lg:flex-row">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
